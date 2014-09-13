@@ -1,0 +1,59 @@
+#!/bin/sh
+
+## DEFINE VARIABLE
+adblock=/opt/adblock/adblock.sh
+alias logger='logger -t ADBLOCK -s'
+counter=0
+directory=/opt/adblock/
+file=source-*
+maxcount=7
+minimumsize=1
+
+
+## BEGIN TEST
+  logger Starting Adblock source data update.
+  [[ -x $adblock ]] && $adblock force
+
+check()
+{
+  if [ $counter -lt $maxcount ]; then
+    killall adblock.sh
+    logger Starting Adblock source data integrity check.
+    for i in $directory$file
+      do
+        actualsize=$(wc -c "$i" | cut -f 1 -d ' ')
+          if [ $actualsize -ge $minimumsize ]; then
+            logger "$i size is ok, redownload not required."
+          else
+            logger "$i size is zero, redownloading host file."
+            [[ -x $adblock ]] && $adblock force
+            let counter=counter+1
+            check
+          fi
+      done
+      logger Adblock source data updated successfully.
+  else
+    TO="your@emailhere.com"	## put your email address here
+    FROMNAME="Cisco E4200"
+
+    logger -t "MAIL NOTIFICATION" -s "Mail sent, about Adblock host source error."
+
+    echo "Subject: Adblock source error + logs" >>/opt/adblocksource.txt
+    echo "From: $FROMNAME" >>/opt/adblocksource.txt
+    echo "Date: `date -R`" >>/opt/adblocksource.txt
+    echo "" >>/opt/adblocksource.txt
+    echo "" >>/opt/adblocksource.txt
+    echo "Source data integrity check completed:" >>/opt/adblocksource.txt
+    echo "`date +\%d/\%m/\%Y` at `date +\%T`" >>/opt/adblocksource.txt
+    echo "" >>/opt/adblocksource.txt
+    echo "" >>/opt/adblocksource.txt
+    echo "Your awesome router." >>/opt/adblocksource.txt
+
+    cat /opt/adblocksource.txt | mutt -s "Adblock source error + logs" -a "/opt/logs/syslog/messages" -- $TO
+    rm /opt/adblocksource.txt
+  fi
+  
+  logger Adblock source data integrity check completed.
+  killall adupdate2
+}
+check

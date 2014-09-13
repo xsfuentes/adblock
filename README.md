@@ -64,4 +64,5 @@ Administration>Scheduler>Custom x
 * You will need 2x-3x as much non-volatile storage as all filters combined. If your storage is too small, set RAMLIST to 1. Obviously, you now need enough free RAM to hold the filters instead! Additionally, the script will now have to redownload the filters when the router reboots.
 * If you change settings or update the script, please run the script with the restart option afterwards!
 * If you experience problems, check the router logs!
-* Requires aria2c to be able to connect to DropBox for the whitelist and blocklist files. aria2c can be used to download blocklists from https sources.
+* Requires `aria2c` to be able to connect to DropBox for the whitelist and blocklist files. aria2c can be used to download blocklists from https sources.
+* The `adupdate2` script is a cronjob set to update the hosts defined in the `config` file. When the update fails, an email will be sent together with the logs. `mutt` is required for the logs to be attached to the email and change the directly where the log file is saved. e.g. `/opt/logs/syslog/message`
