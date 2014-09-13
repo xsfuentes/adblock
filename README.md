@@ -24,9 +24,10 @@ Note -- Users of Adblock pre-v4.0 need to completely remove it.
 * Designate a directory on your storage for adblock, e.g. /opt/adblock/ (as seen by the router). Avoid spaces! This is the PREFIX.
 
 ### 2. Install Adblock
-* Place both files in this github repo on the filesystem of your target device. For example: /opt/adblock
+* Place both files in this github repo on the filesystem of your target device. For example: /opt/adblock/
+* For the pixelserv code, copy then paste the code in Tools > System Commands and Execute. By default, the pixelserv should be installed in /opt/adblock/ directory.
 * Make adblock.sh executable `chmod +x /opt/adblock.sh`
-* Edit /opt/adblock/config adjusting the PREFIX variable to match that path chosen.
+* Edit /opt/adblock/config file for pixelserv and other settings.
 * Optionally comment or uncomment the various sources in the config file per your perferences.
 
 ## Running Adblock
@@ -54,6 +55,8 @@ Administration>Scheduler>Custom x
 `[[ -x /opt/adblock/adblock.sh ]] && /opt/adblock/adblock.sh restart`
 
 ### Notes
+* For this version of Adblock, setup of optware or entware is required.
+* The default directory (PREFIX) is /opt/adblock/. Copy the adblock.sh and config files in that directory.
 * The script, pixelserv and all data reside on PREFIX. If you have other means of accessing that storage, those will probably be more convenient than pasting into boxes on the web GUI.
 * The script will automatically block anything bound for the pixelserv IP that is not intended for pixelserv itself.
 * Subsequent updates will only fetch blocklists that have changed, this however only works when the source server runs http on port 80.
