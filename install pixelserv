@@ -2,7 +2,7 @@
 ## install pixelserv v31
 ## encoded: cat pixelserv | gzip -c | openssl enc -e -base64
 
-PREFIX="/opt/adblock/"	## adjust this!
+PREFIX="/opt/adblock/"	## adjust this PREFIX!
 
 [ -d "$PREFIX" ] || mkdir -p "$PREFIX"
 echo "
