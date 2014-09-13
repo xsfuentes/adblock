@@ -44,7 +44,7 @@ Users can call the script from the shell (or the TomatoUSB GUI under Tools>Syste
 
 `/opt/adblock/adblock.sh toggle`	Disable the adlocker if active, enable if inactive. Perfect for one of the custom buttons on your router.
 
-`/opt/adblock/adblock.sh clean`	Delete host files and Stop Adblock.
+`/opt/adblock/adblock.sh clean`	Delete host files and stops Adblock.
 
 ### Example starting the script when the router boot
 Administration>Scripts>WAN Up
