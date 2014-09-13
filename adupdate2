@@ -49,7 +49,7 @@ check()
     echo "" >>/opt/adblocksource.txt
     echo "Your awesome router." >>/opt/adblocksource.txt
 
-    cat /opt/adblocksource.txt | mutt -s "Adblock source error + logs" -a "/opt/logs/syslog/messages" -- $TO
+    cat /opt/adblocksource.txt | mutt -s "Adblock source error + logs" -a "/opt/logs/syslog/messages" -- $TO  ## change logs directory
     rm /opt/adblocksource.txt
   fi
   
