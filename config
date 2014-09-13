@@ -1,0 +1,62 @@
+### Settings ###
+PIXEL_IP="254"                ## 0: disable pixelserv
+                              ## 1-254: last octet of IP to run pixelserv on (default=254)
+PIXEL_OPTS=""                 ## additional options for pixelserv
+BRIDGE="br0"                  ## bridge interface for pixelserv (default=br0)
+RAMLIST="0"                   ## 1: keep blocklist in RAM (e.g. for small JFFS) (default=0)
+CONF="/etc/dnsmasq.custom"    ## dnsmasq custom config (must be sourced by dnsmasq!)
+                              ## confused? then leave this be!
+
+### Sources (uncomment desired blocklists) [must be compatible to the hosts file format!] ###
+##1  MVPS HOSTS (~497k) [default]: source-c2934517
+     SOURCES="$SOURCES http://winhelp2002.mvps.org/hosts.txt"
+
+##2  MalwareDomainList.com (~39.4k) [default]: source-3b41114e
+     SOURCES="$SOURCES http://www.malwaredomainlist.com/hostslist/hosts.txt"
+
+##3  Someonewhocares (~311k) [default]: source-f4af2545
+     SOURCES="$SOURCES http://someonewhocares.org/hosts/hosts"
+
+##4 pgl.yoyo.org (~64.5k): source-da9bd190
+     SOURCES="$SOURCES http://pgl.yoyo.org/adservers/serverlist.php?hostformat=hosts&mimetype=plaintext"
+
+##5  Adaway mobile ads (~14.2k) [default]: source-fb1d1107
+     SOURCES="$SOURCES http://adaway.org/hosts.txt"
+	 
+##6  The Cameleon Project (~619k) [deafult]: source-613416c8
+     SOURCES="$SOURCES http://sysctl.org/cameleon/hosts"
+
+##7  hpHosts ad/tracking servers (~668k) [default]: source-d7c9f037
+     SOURCES="$SOURCES http://hosts-file.net/.%5Cad_servers.txt"
+
+##8  Mirror MalwareDomainList.com (~241k) [default]: source-b7193dae
+     #SOURCES="$SOURCES http://mirror1.malwaredomains.com/files/justdomains"
+     aria2c --dir=/opt/adblock --out=source-b7193dae --allow-overwrite=true --event-poll=select --check-certificate=false http://mirror1.malwaredomains.com/files/justdomains
+
+##9  Hosts File Project (~2.77M): source-6cc47286
+     #SOURCES="$SOURCES http://hostsfile.mine.nu/Hosts"
+
+##10 adblock.gjtech.net (~24.5k): source-353675ed
+     #SOURCES="$SOURCES http://adblock.gjtech.net/?format=unix-hosts"
+
+##11 Hostfile.org (~809k): source-e3b3162a
+     #SOURCES="$SOURCES http://securemecca.com/Downloads/hosts.txt"
+
+##12 Android adblocker (~3.02M): source-f0d493b3
+     #SOURCES="$SOURCES http://optimate.dl.sourceforge.net/project/adzhosts/HOSTS.txt"
+
+##13 hpHosts Partial (~5.04M): source-c284657f
+     #SOURCES="$SOURCES http://hosts-file.net/hphosts-partial.txt"
+
+##14 hpHosts ad/tracking/malicious servers (~6M! replaces hpHosts ad/tracking list): source-4313bc45
+     #SOURCES="$SOURCES http://hosts-file.net/download/hosts.txt"
+
+### Blacklist additional sites ###
+## (add hostnames inside the quotes, space-separated, without http://) ##
+     #BLACKLIST=""
+     aria2c --dir=/opt/adblock --out=blacklist --allow-overwrite=true --event-poll=select --check-certificate=false https://dl.dropboxusercontent.com/u/55667237/blacklist.txt
+
+### Whitelist sites from blocking ###
+## (add hostnames inside the quotes, space-separated, without http://) ##
+     #WHITELIST=""
+     aria2c --dir=/opt/adblock --out=whitelist --allow-overwrite=true --event-poll=select --check-certificate=false https://dl.dropboxusercontent.com/u/55667237/whitelist.txt
