@@ -1,6 +1,6 @@
 #!/bin/sh
 ## Modified Clean, Lean and Mean Adblock v4.5.1 by xfuentes
-## email: xfuentes@gmail.com
+## email: xaviersfuentes@gmail.com
 ## Original code by haarp
 ## Options:
 ## 'force': force updating sources,
