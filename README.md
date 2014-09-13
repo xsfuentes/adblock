@@ -1,4 +1,4 @@
-## Adblock for TomatoUSB by haarp
+## Modified Clean, Lean and Mean Adblock v4.5.1 by xfuentes (original code by harrp)
 A clean, lean, and mean adblocking script.
 [Upstream URL](http://www.linksysinfo.org/index.php?threads/script-clean-lean-and-mean-adblocking.68464/)
 
@@ -13,6 +13,8 @@ A clean, lean, and mean adblocking script.
 * Very optimized: Updates as quickly and with as little CPU/memory usage as possible.
 * Small and lean: Only does what it needs to do, then gets out of the way.
 * Readable code.
+* Working whitelist and blocklist.
+* Requires aria2c to be able to connect to DropBox for the whitelist and blocklist files.
 
 ## Setup Instructions
 Note -- Users of Adblock pre-v4.0 need to completely remove it.
@@ -20,7 +22,7 @@ Note -- Users of Adblock pre-v4.0 need to completely remove it.
 ### 1. Setup the router
 * Verify that your Tomato supports custom dnsmasq configs (i.e. shows this line under Advanced->DHCP/DNS: "Note: The file /etc/dnsmasq.custom is also added to the end of Dnsmasq's configuration file if it exists.")
 * Set up some kind of non-volatile storage. This is up to you, options are JFFS, CIFS, SD card, USB and possibly more. Note the path.
-* Designate a directory on your storage for adblock, e.g. /jffs/adblock/ (as seen by the router). Avoid spaces! This is the PREFIX.
+* Designate a directory on your storage for adblock, e.g. /opt/adblock/ (as seen by the router). Avoid spaces! This is the PREFIX.
 
 ### 2. Install Adblock
 * Place both files in this github repo on the filesystem of your target device. For example: /opt/adblock
@@ -41,6 +43,8 @@ Users can call the script from the shell (or the TomatoUSB GUI under Tools>Syste
 `/opt/adblock/adblock.sh force`	Force updating of filters, even in not updated.
 
 `/opt/adblock/adblock.sh toggle`	Disable the adlocker if active, enable if inactive. Perfect for one of the custom buttons on your router.
+
+`/opt/adblock/adblock.sh clean`	Delete host files and Stop Adblock.
 
 ### Example starting the script when the router boot
 Administration>Scripts>WAN Up
