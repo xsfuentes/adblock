@@ -14,7 +14,6 @@ A clean, lean, and mean adblocking script.
 * Small and lean: Only does what it needs to do, then gets out of the way.
 * Readable code.
 * Working whitelist and blocklist.
-* Requires aria2c to be able to connect to DropBox for the whitelist and blocklist files.
 
 ## Setup Instructions
 Note -- Users of Adblock pre-v4.0 need to completely remove it.
@@ -61,3 +60,4 @@ Administration>Scheduler>Custom x
 * You will need 2x-3x as much non-volatile storage as all filters combined. If your storage is too small, set RAMLIST to 1. Obviously, you now need enough free RAM to hold the filters instead! Additionally, the script will now have to redownload the filters when the router reboots.
 * If you change settings or update the script, please run the script with the restart option afterwards!
 * If you experience problems, check the router logs!
+* Requires aria2c to be able to connect to DropBox for the whitelist and blocklist files.
