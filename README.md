@@ -65,4 +65,4 @@ Administration>Scheduler>Custom x
 * If you change settings or update the script, please run the script with the restart option afterwards!
 * If you experience problems, check the router logs!
 * Requires aria2c to be able to connect to DropBox for the whitelist and blocklist files. aria2c can be used to download blocklists from https sources.
-* The adupdate2 script is a cronjob set to update the hosts defined in the config file. When the update fails, an email will be sent with the log file attached. mutt is required for this to work and change the directory where the log file is saved. e.g. /opt/logs/syslog/messages
+* The `adupdate2` script can be set in Administration > Scheduler to update the hosts defined in the config file. When the update fails, an email will be sent with the log file attached. mutt is required for this to work and change the directory where the log file is saved. e.g. /opt/logs/syslog/messages
