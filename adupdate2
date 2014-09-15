@@ -1,5 +1,5 @@
 #!/bin/sh
-## Mail notification when an Adblock host is not reachable
+## Mail notification when an Adblock host is not reachable by xfuentes
 ## Variables without description should not be modified
 ## Required package: mutt
 
@@ -10,10 +10,10 @@ counter=0
 directory=/opt/adblock/               ## directory where adblock.sh is saved; default: /opt/adblock/
 file=source-*
 fromname="Cisco E4200"                ## make and model of the router; default: "Cisco E4200"
-log=/opt/logs/syslog/messages         ## path of the logs file
-maxcount=7
+log=/opt/logs/syslog/messages         ## path of the log file
+maxcount=7                            ## maximum number download retries; defaut: 7
 minimumsize=1
-to="your@emailhere.com"	## put your email address here
+to="your@emailhere.com"               ## email address where the notification will be sent
 
 
 ## BEGIN TEST
