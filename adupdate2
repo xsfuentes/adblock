@@ -1,14 +1,19 @@
 #!/bin/sh
+## Mail notification when an Adblock host is not reachable
+## Variables without description should not be modified
+## Required package: mutt
 
-## DEFINE VARIABLE
-adblock=/opt/adblock/adblock.sh
-alias logger='logger -t ADBLOCK -s'
+## DEFINE VARIABLES
+adblock=/opt/adblock/adblock.sh       ## path of adblock.sh; default: /opt/adblock/adblock.sh
+alias logger='logger -t "ADBLOCK" -s' ## name that will be displayed in the logs and terminal; default: "ADBLOCK"
 counter=0
-directory=/opt/adblock/
+directory=/opt/adblock/               ## directory where adblock.sh is saved; default: /opt/adblock/
 file=source-*
-log=/opt/logs/syslog/messages
+fromname="Cisco E4200"                ## make and model of the router; default: "Cisco E4200"
+log=/opt/logs/syslog/messages         ## path of the logs file
 maxcount=7
 minimumsize=1
+to="your@emailhere.com"	## put your email address here
 
 
 ## BEGIN TEST
@@ -34,13 +39,10 @@ check()
       done
       logger Adblock source data updated successfully.
   else
-    TO="your@emailhere.com"	## put your email address here
-    FROMNAME="Cisco E4200"
-
     logger -t "MAIL NOTIFICATION" -s "Mail sent, about Adblock host source error."
 
     echo "Subject: Adblock source error + logs" >>/opt/adblocksource.txt
-    echo "From: $FROMNAME" >>/opt/adblocksource.txt
+    echo "From: $fromname" >>/opt/adblocksource.txt
     echo "Date: `date -R`" >>/opt/adblocksource.txt
     echo "" >>/opt/adblocksource.txt
     echo "" >>/opt/adblocksource.txt
@@ -50,7 +52,7 @@ check()
     echo "" >>/opt/adblocksource.txt
     echo "Your awesome router." >>/opt/adblocksource.txt
 
-    cat /opt/adblocksource.txt | mutt -s "Adblock source error + log" -a $log -- $TO  ## change logs directory
+    cat /opt/adblocksource.txt | mutt -s "Adblock source error + log" -a $log -- $to
     rm /opt/adblocksource.txt
   fi
   
