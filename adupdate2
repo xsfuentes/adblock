@@ -6,6 +6,7 @@ alias logger='logger -t ADBLOCK -s'
 counter=0
 directory=/opt/adblock/
 file=source-*
+log=/opt/logs/syslog/messages
 maxcount=7
 minimumsize=1
 
@@ -49,7 +50,7 @@ check()
     echo "" >>/opt/adblocksource.txt
     echo "Your awesome router." >>/opt/adblocksource.txt
 
-    cat /opt/adblocksource.txt | mutt -s "Adblock source error + logs" -a "/opt/logs/syslog/messages" -- $TO  ## change logs directory
+    cat /opt/adblocksource.txt | mutt -s "Adblock source error + log" -a $log -- $TO  ## change logs directory
     rm /opt/adblocksource.txt
   fi
   
